@@ -22,8 +22,8 @@ public class LoginPanel  extends JPanel{
 
 	JButton btnLogin,btnback;
 	JLabel lblusername,lblpassword;
-	JPasswordField txtusername,txtpassword;
-	//JTextField txtusername,txtpassword;
+	JPasswordField txtpassword;
+	JTextField txtusername;
 
 	public LoginPanel(JFrame parent) {
 
@@ -35,7 +35,7 @@ public class LoginPanel  extends JPanel{
 		lblusername=new JLabel("ENTER USERNAME:");
 		lblpassword=new JLabel("ENTER PASSWORD:");
 
-		txtusername=new JPasswordField(10);
+		txtusername=new JTextField(10);
 		txtpassword=new JPasswordField(10);
 
 		btnLogin=new JButton("LOGIN");
@@ -60,7 +60,7 @@ public class LoginPanel  extends JPanel{
 
 					AdminDAO dao=new AdminDAO();
 
-					AdminLogin u=new AdminLogin(username, password);
+					AdminLogin u=new AdminLogin(username,password);
 
 					if(dao.User(u))
 					{
@@ -94,7 +94,7 @@ public class LoginPanel  extends JPanel{
 		});
 
 
-		btnback=new JButton("BACK");
+		btnback=new JButton("EXIT");
 
 		btnback.addActionListener(new ActionListener() {
 

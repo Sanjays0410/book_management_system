@@ -38,6 +38,7 @@ public class Addpanel extends JPanel {
 
 	JComboBox<String> Categorycombo=new JComboBox<>(CategoryNames);
 
+	String CategoryName;
 	//private JLabel lblDept = null;
 
 	public Addpanel( JFrame parent) {
@@ -74,20 +75,8 @@ public class Addpanel extends JPanel {
 		Categorycombo.setPreferredSize(new Dimension(140, 22));
 		Categorycombo.setMaximumSize(new Dimension(140, 22));
 
-		/*	Categorycombo.addItemListener(new ItemListener() {
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED)
-				{
-				int index = Categorycombo.getSelectedIndex();
-				String CategoryName = CategoryNames[index];
-				//lblcategory.setText(CategoryName);
-				}
-			}
-		});
-
-		 */
+		
+		
 
 		btnok=new JButton("SUBMIT");
 		btnback=new JButton("BACK");
@@ -108,7 +97,7 @@ public class Addpanel extends JPanel {
 						if(e.getStateChange() == ItemEvent.SELECTED)
 						{
 							int index = Categorycombo.getSelectedIndex();
-							String CategoryName = CategoryNames[index];
+							  CategoryName = CategoryNames[index];
 							//lblcategory.setText(CategoryName);
 						}
 					}
@@ -116,33 +105,41 @@ public class Addpanel extends JPanel {
 
 				String book_isbn=txtbook_isbn.getText().trim();
 				String title=txt_title.getText().trim();
-				//String CategoryNames=Categorycombo.getName().trim();
+				
+				 CategoryName=(String) Categorycombo.getSelectedItem();
 				String no_of_books=txtno_of_book.getText().trim();
 				String author_name=txtauthor_name.getText().trim();
 				String author_mailid=txtauthormail_id.getText().trim();
 
 
 
+
 				try
 				{
-					if(book_isbn.equals("") ||title.equals("") ||  no_of_books.equals("") || author_name.equals("")|| author_mailid.equals(""))
+					
+
+
+					if(book_isbn.equals("") ||title.equals("")  || CategoryName==null|| no_of_books.equals("") || author_name.equals("")|| author_mailid.equals(""))
 
 					{
 						JOptionPane.showMessageDialog(Panel,"details cannot be empty", "WARNING", JOptionPane.WARNING_MESSAGE);
 						return;
 					} 
 
-					Author aut=new Author(author_name, author_mailid);
 
-					int index = Categorycombo.getSelectedIndex();
-					String Categorycombo = CategoryNames[index];;
-					Book b=new Book(Integer.parseInt(book_isbn), title, Categorycombo, Integer.parseInt(no_of_books), aut);
+					Author aut=new Author(author_name, author_mailid);
+					
+					Book b=new Book(Integer.parseInt(book_isbn), title, CategoryName, Integer.parseInt(no_of_books), aut);
+
+
 
 					if(dao.Create(b))
 					{
 						//help to enter nxt data////
 						txtbook_isbn.setText("");
 						txt_title.setText("");
+						
+						
 						//txtCategory.setText("");
 						txtno_of_book.setText("");
 						txtauthor_name.setText("");
@@ -153,7 +150,7 @@ public class Addpanel extends JPanel {
 
 					}	
 
-				}catch(NumberFormatException nfe){
+				}catch(NumberFormatException nfe){  
 					getToolkit().beep();
 					JOptionPane.showMessageDialog(Panel,"invalid data :(", "error", JOptionPane.ERROR_MESSAGE);
 				}catch(SMSException smse){

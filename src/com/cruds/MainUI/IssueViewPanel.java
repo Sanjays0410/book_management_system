@@ -27,9 +27,9 @@ public class IssueViewPanel extends JPanel {
 	JTextField txt_StudUSN;
 	JTable table;
 	JScrollPane scrollpane;
-	
+
 	Vector<String> colNames=new Vector<>();
-	
+
 	String serstudUSN;
 
 	public IssueViewPanel(JFrame parent) {
@@ -37,7 +37,7 @@ public class IssueViewPanel extends JPanel {
 		Panel=this;
 
 		IssueDAO  dao=new IssueDAO();
-		 serstudUSN=null;
+		serstudUSN=null;
 
 		lbl_stdUSN= new JLabel("ENTER THE USN");
 		txt_StudUSN= new JTextField(10);
@@ -47,8 +47,8 @@ public class IssueViewPanel extends JPanel {
 		colNames.add("Student_USN");
 		colNames.add("Issued_Date");
 		colNames.add("Return_Date");
-		
-		
+
+
 		table=new JTable(new DefaultTableModel(null,colNames));
 
 		scrollpane=new JScrollPane(table);
@@ -62,8 +62,8 @@ public class IssueViewPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				  serstudUSN =txt_StudUSN.getText().trim();
-				  
+				serstudUSN =txt_StudUSN.getText().trim();
+
 				Vector<Vector<String>> data=dao.Issuebook(serstudUSN);
 				try
 				{
@@ -83,12 +83,13 @@ public class IssueViewPanel extends JPanel {
 						JOptionPane.showMessageDialog(Panel, "Details found :)","SUCCESS",JOptionPane.INFORMATION_MESSAGE);
 
 						table.setModel(new DefaultTableModel(data,colNames));
+						return;
 					}
 
 					else
 					{ 
 						txt_StudUSN.setText("");
-						JOptionPane.showMessageDialog(Panel, "Student not found","ERROR",JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(Panel, "Details not found","ERROR",JOptionPane.ERROR_MESSAGE);
 
 					}
 				}catch(NumberFormatException nfe){
@@ -103,8 +104,8 @@ public class IssueViewPanel extends JPanel {
 			}
 		});
 
-		
-	
+
+
 
 		btnback=new JButton("BACK");
 
@@ -120,8 +121,8 @@ public class IssueViewPanel extends JPanel {
 
 			}
 		});
-		
-		
+
+
 		Panel.add(lbl_stdUSN);
 		Panel.add(txt_StudUSN);
 		Panel.add(btnok);

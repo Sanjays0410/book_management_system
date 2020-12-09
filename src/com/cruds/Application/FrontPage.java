@@ -27,7 +27,7 @@ import com.cruds.demo.Author;
 import com.cruds.demo.Book;
 
 import com.cruds.exception.SMSException;
-	public class FrontFrame extends JFrame{
+	public class FrontPage extends JFrame{
 
 	
 		
@@ -52,7 +52,7 @@ import com.cruds.exception.SMSException;
 		//JFrame parent;
 		
 		
-		FrontFrame()
+		FrontPage()
 		{
 			setTitle("BOOK MANAGEMENT SYSTEM");
 			setSize(500, 400);
@@ -387,7 +387,7 @@ import com.cruds.exception.SMSException;
 		@Override
 		public void run() {
 			
-			  new FrontFrame();
+			  new FrontPage();
 		}
 	});  
 	   }

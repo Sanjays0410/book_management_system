@@ -110,14 +110,15 @@ public class BookDAO
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();
+			
 		}
 		return data;
 	}
 	public Vector<Vector<String>> getBookAuthor(String Author_name)
 	{
-		//Author_name = "%" + Author_name + "%";
+		Author_name = "%" + Author_name + "%";
 
-		String sql="select b.book_isbn,b.book_title,b.category,b.no_of_books,a.author_name,a.author_mail_id from book b,author a  where Author_name =? and b.book_isbn=a.book_isbn";
+		String sql="select b.book_isbn,b.book_title,b.category,b.no_of_books,a.author_name,a.author_mail_id from book b,author a  where Author_name like ? and b.book_isbn=a.book_isbn";
 		Vector<String> row=new Vector<>();
 		Vector<Vector<String>> data=new Vector<>();
 
@@ -146,6 +147,7 @@ public class BookDAO
 
 	public Vector<Vector<String>> getAllbook()
 	{
+		
 		String sql="select b.book_isbn,b.book_title,b.category,b.no_of_books,a.author_name,a.author_mail_id from book b, author a where b.book_isbn=a.book_isbn";
 
 		Vector<String> row=new Vector<>();

@@ -1,7 +1,5 @@
 package com.cruds.MainUI;
 
-import java.awt.BorderLayout;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableModel;
 
 
 

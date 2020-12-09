@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.text.DateFormatter;
-
 public class Dateutil {
 
 	private static final SimpleDateFormat dateFormatter=new SimpleDateFormat("dd-MM-yyyy");

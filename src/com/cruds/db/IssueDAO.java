@@ -14,51 +14,13 @@ import com.cruds.dateutil.Dateutil;
 import com.cruds.demo.Book;
 import com.cruds.demo.Issue;
 import com.cruds.demo.Student;
+import com.cruds.exception.SMSException;
 
 public class IssueDAO{
 
-	public boolean CreateStudent(Student s){
-
-		String sql="insert into Student(usn,name) values (?,?)";
-
-		int rows=0;
-		try(Connection conn=DBconnectionManager.getConnection())
-		{
-			PreparedStatement ps=conn.prepareStatement(sql);
-			ps.setString(1, s.getUSN());
-			ps.setString(2, s.getName());
-			rows=ps.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return rows>0;	
-	}
 	
-	public Vector<Vector<String>> getStudent(String USN)
-	{
-		String sql="select 	USN,name from student where USN=?";
-		Vector<String> row=new Vector<>();
-		Vector<Vector<String>> data=new Vector<>();
-		try(Connection conn=DBconnectionManager.getConnection())
-		{
-			PreparedStatement ps=conn.prepareStatement(sql);
-			ps.setString(1,USN);
-			ResultSet rs=ps.executeQuery();
-			if(rs!=null && rs.next())
-			{
-				row=new Vector<>();
-				row.add(rs.getString(1));
-				row.add(rs.getString(2));
-				data.add(row);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return data;
-	}
+	
+	
 	
 	public int create(Issue issue)
 	{
@@ -116,6 +78,8 @@ public class IssueDAO{
 	
 	public Vector<Vector<String>> Issuebook(String usn)
 	{
+		//usn = "%" + usn + "%";
+		
 		String sql="select b.book_isbn, b.book_title, i.usn, i.issued_date, i.return_date from book b,book_issue i  where b.book_isbn=i.book_isbn and USN=?";
 		Vector<String> row=new Vector<>();
 		Vector<Vector<String>> data=new Vector<>();

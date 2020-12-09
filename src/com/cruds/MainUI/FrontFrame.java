@@ -15,7 +15,6 @@ public class FrontFrame extends JFrame {
 		setSize(1000, 1000);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);	
-
 		add(new LoginPanel(parent));
 		setVisible(true);
 
